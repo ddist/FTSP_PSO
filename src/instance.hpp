@@ -11,11 +11,8 @@ using namespace std;
 class Instance
 {
 	public:
-		//Instance();
-		//~Instance();
 
 		Instance* load(const char*);
-		void print();
 
 		unsigned short n,m, N; /* Number of jobs and technicians. N = n+1, includes dummy origin job. */
 		vector<unsigned short> w; /* Job priority list */

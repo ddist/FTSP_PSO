@@ -3,6 +3,8 @@
 Instance* Instance::load(const char* fdir) {
 	ifstream file (fdir);
 
+	this->initialized = false;
+
 	if(!file.is_open()) {
 		cout << "Can't open file " << fdir << endl;
 		return NULL;
@@ -61,14 +63,8 @@ Instance* Instance::load(const char* fdir) {
 		file >> this->c[i][1];
 	}
 
+	this->initialized = true;
+
 	file.close();
 	return this;
-}
-
-void Instance::print() {
-	cout << this->n << endl;
-	cout << this->m << endl;
-	for(int i=0;i<this->n+1;i++) {
-		cout << this->w[i] << " ";
-	}
 }
