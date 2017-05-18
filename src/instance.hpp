@@ -15,10 +15,11 @@ class Instance
 		//~Instance();
 
 		Instance* load(const char*);
+		void print();
 
-		unsigned short n,m; /* Number of jobs and technicians */
+		unsigned short n,m, N; /* Number of jobs and technicians. N = n+1, includes dummy origin job. */
 		vector<unsigned short> w; /* Job priority list */
-		vector<vector<bool>> s; /* Skills matrix (n x m) */
+		vector<vector<unsigned short>> s; /* Skills matrix (n x m) */
 		vector<unsigned short> p; /* Jobs execution time list */
 		vector<unsigned short> e; /* Jobs time window start list */
 		vector<unsigned short> l; /* Jobs time window end list */
