@@ -25,10 +25,8 @@ vector<unsigned short> getPriorityList (vector<float>& pos, unsigned short nJobs
 		unsigned short index = distance(begin, min_element(begin, begin + encodedPriorities.size()));
 		decodedPriorities[i] = index + 1;
 		encodedPriorities[index] = M;
-		cout << decodedPriorities[i] << " ";
 		i++;
 	}
-	cout << endl;
 
 	return decodedPriorities;
 };
