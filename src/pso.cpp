@@ -24,7 +24,9 @@ vector<unsigned short> getPriorityList (vector<float>& pos, unsigned short nJobs
 	while(i < nJobs) {
 		unsigned short index = distance(begin, min_element(begin, begin + encodedPriorities.size()));
 		decodedPriorities[i] = index + 1;
-		encodedPriorities[index] = M;
+		// 	With M being bigger than all values in encodedPriorities, the next line effectively masks the 
+		//	job as already added to decodedPriorities.
+		encodedPriorities[index] = M; 
 		i++;
 	}
 
