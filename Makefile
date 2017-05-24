@@ -1,11 +1,11 @@
 CC=g++
 CFLAGS=-Wall -std=c++11
-OUT=ftsp
+OUT=pso
 ODIR = .
 SDIR = src
 INC = -Iinc
 
-_OBJS = main.o instance.o
+_OBJS = main.o instance.o pso.o
 OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
 
 
