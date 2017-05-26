@@ -19,3 +19,4 @@ $(OUT): $(OBJS)
 
 clean:
 	rm -f $(ODIR)/$(OUT)
+	rm -f $(ODIR)/%.o

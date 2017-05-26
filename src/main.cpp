@@ -8,7 +8,7 @@ int main(int argc, char const *argv[]) {
 	inst.load(argv[1]);
 	PSOParams params;
 	params.seed = 1564;
-	params.uMax = 1.0;
+	params.uMax = 100.0;
 	params.uMin = 0.0;
 	params.nParticles = 10;
 	PSO optimizer(inst, params);
