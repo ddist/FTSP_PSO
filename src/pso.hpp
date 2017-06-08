@@ -18,23 +18,19 @@ struct PSOParams {
 	float wStart, wEnd; // Inertia values. Performs linear decay only when maxIter is set
 	unsigned short nParticles; // Number of particles in the swarm
 	unsigned int seed; // Seed value to feed random number generator
+	unsigned short maxIter = 100; // maximum number of iterations as a stopping criteria
 	/* TODO Topology params */
 };
-
-/*struct Solution {
-	vector<vector<unsigned short>> routes;
-	vector<float> t;
-	vector<float> z;
-
-	float score;
-};*/
 
 class Particle {
 public:
 	Particle(unsigned short m, function<float()>& generator);
 	//vector<vector<unsigned short>> decode();
-
 	vector<float> position;
+
+	void updateBest(float score);
+	void updateVelocity(function<float()>& generator, PSOParams& params, vector<float>& gBest);
+	void updatePosition(PSOParams& params);
 private:
 	vector<float> velocity;
 	float pBestScore;
@@ -44,12 +40,13 @@ private:
 class PSO {
 public:
 	PSO(Instance& inst, PSOParams& params);
+	void solve();
 private:
 	vector<Particle> swarm;
 	float gBestScore;
 	vector<float> gBest;
 
-	function<float()> generator;
+	default_random_engine generator;
 
 	Instance instance;
 	PSOParams parameters;
