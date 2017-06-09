@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <numeric>
 #include <math.h>
+#include <cstdlib>
 
 #ifndef _PSO_HPP_INCLUDED_
 #define _PSO_HPP_INCLUDED_

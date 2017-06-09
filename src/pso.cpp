@@ -11,7 +11,7 @@ void getCoverageMatrix(vector<float>& pos, Instance& inst, vector<vector<unsigne
 			// Check if technician has the required skill
 			if(inst.s[j+1][i]) {
 				// Check if job is in technician range (euclidian distance)
-				if(norm1(pos[3*i], pos[3*i+1], inst.c[j+1][0], inst.c[j+1][1]) <= pos[3*i+2]) {
+				if(norm1(pos[3*i], pos[3*i+1], inst.c[j+1][0], inst.c[j+1][1]) <= abs(pos[3*i+2])) {
 					coverage[i][j] = inst.w[j+1];
 				}
 			}
