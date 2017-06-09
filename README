@@ -1,3 +1,15 @@
+REQUIREMENTS
+
+- GCC 4.8.X
+- C++11 support
+
+INSTRUCTIONS
+
+1) Navigate to the project folder
+2) Run $ make in the shell
+3) Execute as ./pso <Instance Dir>, e.g ./pso data/FSTP_R_1_1.txt
+
+
 INSTANCES
 
 1) The name of each instance consists of the problem's name (FTSP), the geographic distribution (R, C, RC, and RAD), the number to the case or dimension of the instances generated (from 1 to 13), and the number of the instance (from 1 to 20). 
