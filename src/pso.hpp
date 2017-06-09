@@ -15,7 +15,7 @@ struct PSOParams {
 	float q1, q2; // Social and cognitive factors
 	float uMax, uMin; // Min/Max uniform distribution position values
 	float vMax, vMin; // Min/Max particle velocity values
-	float wStart, wEnd; // Inertia values. Performs linear decay only when maxIter is set
+	float vWeight; // Inertia value
 	unsigned short nParticles; // Number of particles in the swarm
 	unsigned int seed; // Seed value to feed random number generator
 	unsigned short maxIter = 100; // maximum number of iterations as a stopping criteria
@@ -24,8 +24,7 @@ struct PSOParams {
 
 class Particle {
 public:
-	Particle(unsigned short m, function<float()>& generator);
-	//vector<vector<unsigned short>> decode();
+	Particle(unsigned short m, default_random_engine& gen, PSOParams& params);
 	vector<float> position;
 
 	void updateBest(float score);
