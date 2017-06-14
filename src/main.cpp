@@ -1,4 +1,3 @@
-#include "instance.hpp"
 #include "pso.hpp"
 
 using namespace std;
