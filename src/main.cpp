@@ -12,11 +12,17 @@ int main(int argc, char const *argv[]) {
 	params.vMin = 0.0;
 	params.vMax = 20.0;
 	params.vWeight = 1.0;
-	params.q1 = 0.2;
-	params.q2 = 0.8;
+	params.q = 0.2;
 	params.nParticles = 30;
 	params.maxIter = 100;
-	PSO optimizer(inst, params);
+
+	Heuristic *h;
+	h = new Priority();
+
+	Topology *t;
+	t = new Global(0.8);
+
+	PSO optimizer(inst, params, h, 1, t);
 	optimizer.solve();
-	return 1;
+	return 0;
 }

@@ -1,5 +1,5 @@
-#ifndef _H_PRIORITY_HPP_INCLUDED_
-#define _H_PRIORITY_HPP_INCLUDED_
+#ifndef _PRIORITY_HPP_INCLUDED_
+#define _PRIORITY_HPP_INCLUDED_
 
 #include "base/heuristic.hpp"
 #include "instance.hpp"
@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class HPriority : public Heuristic
+class Priority : public Heuristic
 {
 public:
 	void initialize(Instance& instance);

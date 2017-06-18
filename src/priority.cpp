@@ -1,4 +1,4 @@
-#include "h_priority.hpp"
+#include "priority.hpp"
 
 /* 2D Euclidian distance */
 float norm1(float x1, float x2, float y1, float y2) {
@@ -33,14 +33,14 @@ void getDistanceMatrix(Instance& instance, vector<vector<float>>& distances) {
 	}
 }
 
-void HPriority::initialize(Instance& instance) {
+void Priority::initialize(Instance& instance) {
 	this->instance = instance;
 	this->cij = vector<vector<float>>(instance.N, vector<float>(instance.N, 0.0));
 	getDistanceMatrix(instance, this->cij);
 }
 
 
-void HPriority::decode(Particle& particle, vector<vector<unsigned short>>& routes, vector<float>& zk) {
+void Priority::decode(Particle& particle, vector<vector<unsigned short>>& routes, vector<float>& zk) {
 
 	auto coverageMatrix = vector<vector<unsigned short>>(this->instance.m, vector<unsigned short>(this->instance.n));
 	getCoverageMatrix(particle.position, this->instance, coverageMatrix);

@@ -10,25 +10,30 @@
 #include <cstdlib>
 #include "instance.hpp"
 #include "pso_params.hpp"
+#include "global.hpp"
+#include "priority.hpp"
 #include "particle.hpp"
-#include "h_priority.hpp"
-#include "n_global.hpp"
 
 using namespace std;
 
 class PSO {
 public:
-	PSO(Instance& inst, PSOParams& params);
+	PSO(Instance& inst, PSOParams& params, Heuristic* h, int tn, Topology* t);
 	void solve();
 private:
 	vector<Particle> swarm;
-	float gBestScore;
-	vector<float> gBest;
+	float bestScore;
+	vector<float> bestPos;
 
 	default_random_engine generator;
 
 	Instance instance;
 	PSOParams parameters;
+
+	Heuristic *heuristic;
+
+	int tn;
+	Topology *topologies;
 };
 
 #endif

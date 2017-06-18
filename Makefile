@@ -5,12 +5,12 @@ ODIR = .
 SDIR = src
 INC = -Iinc
 
-_OBJS = main.o pso.o h_priority.o n_global.o instance.o particle.o
+_OBJS = main.o pso.o priority.o global.o instance.o particle.o
 OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
 
 
 $(ODIR)/%.o: $(SDIR)/%.cpp
-	$(CC) -c $(INC) -o $@ $< $(CFLAGS) 
+	$(CC) -c $(INC) -o $@ $< $(CFLAGS)
 
 $(OUT): $(OBJS) 
 	$(CC) -o $(OUT) $^
@@ -19,4 +19,4 @@ $(OUT): $(OBJS)
 
 clean:
 	rm -f $(ODIR)/$(OUT)
-	rm -f $(ODIR)/%.o
+	rm -f $(ODIR)/*.o

@@ -25,25 +25,34 @@ float evaluate(vector<vector<unsigned short>>& routes, vector<float>& zk, Instan
 }
 
 
-PSO::PSO(Instance& inst, PSOParams& params)
-: gBestScore(0)
-, gBest(3*inst.m, 0.0)
+PSO::PSO(Instance& inst, PSOParams& params, Heuristic* h, int tn, Topology* t)
+: bestScore(0)
+, bestPos(3*inst.m, 0.0)
 , instance(inst)
 , parameters(params)
+, heuristic(h)
+, tn(tn)
+, topologies(t)
 {
 	this->generator = default_random_engine(params.seed);
-	this->swarm = vector<Particle>(params.nParticles, Particle(inst.m, this->generator, params));
+	for(int i=0;i < params.nParticles;i++) {
+		this->swarm.push_back(Particle(inst.m, ref(this->generator), params));
+	}
+	//this->swarm = vector<Particle>(params.nParticles);
+
 }
 
 void PSO::solve() {
 
-	HPriority decoder = HPriority();
-	decoder.initialize(this->instance);
+	this->heuristic->initialize(this->instance);
+	for(int i=0;i<this->tn;i++) {
+		this->topologies[i].initialize(&(this->swarm));
+	}
 
 	unsigned short nIter = 0;
 
 	uniform_real_distribution<float> dist(0.0,1.0);
-	function<float()> gen = bind(dist, this->generator);
+	function<float()> gen = bind(dist, ref(this->generator));
 
 	do 
 	{
@@ -52,18 +61,20 @@ void PSO::solve() {
 			auto routes = vector<vector<unsigned short>>(this->instance.m, vector<unsigned short>(2, 0));
 			auto zk = vector<float>(this->instance.m, 0.0);
 			
-			decoder.decode(this->swarm[i], routes, zk);
+			this->heuristic->decode(this->swarm[i], routes, zk);
 			// Evaluate the candidate solution
 			float score = evaluate(routes, zk, this->instance);
 			// Update particle's best score
 			this->swarm[i].updateBest(score);
-			// Update neighborhood's best score
-			if(this->gBestScore < score) {
-				this->gBestScore = score;
-				copy(this->swarm[i].position.begin(), this->swarm[i].position.end(), this->gBest.begin());
+			//Update neighborhood best
+			for(int j=0;j<this->tn;j++) {this->topologies[j].update((unsigned short)i, score);};
+			// Update PSO best score
+			if(this->bestScore < score) {
+				this->bestScore = score;
+				//copy(this->swarm[i].position.begin(), this->swarm[i].position.end(), this->bestPos.begin());
 			}
 			// Update particle velocity and position
-			this->swarm[i].updateVelocity(gen, this->parameters, this->gBest);
+			this->swarm[i].updateVelocity(this->topologies, this->tn, i, gen, this->parameters);
 			this->swarm[i].updatePosition(this->parameters);
 		}
 
@@ -71,6 +82,5 @@ void PSO::solve() {
 
 	} while (nIter < this->parameters.maxIter);
 
-	cout << "Best score: " << this->gBestScore << endl;
-
+	cout << "Best score: " << this->bestScore << endl;
 }

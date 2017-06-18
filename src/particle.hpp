@@ -5,7 +5,9 @@
 #include <functional>
 #include <vector>
 #include <algorithm>
+#include <iostream>
 #include "pso_params.hpp"
+#include "base/topology.hpp"
 
 using namespace std;
 
@@ -15,7 +17,7 @@ public:
 	vector<float> position;
 
 	void updateBest(float score);
-	void updateVelocity(function<float()>& generator, PSOParams& params, vector<float>& gBest);
+	void updateVelocity(Topology* t, int tn, int n, function<float()>& generator, PSOParams& params);
 	void updatePosition(PSOParams& params);
 private:
 	vector<float> velocity;
