@@ -12,6 +12,7 @@
 #include "pso_params.hpp"
 #include "global.hpp"
 #include "ring.hpp"
+#include "fdr.hpp"
 #include "priority.hpp"
 #include "particle.hpp"
 
@@ -24,7 +25,6 @@ public:
 private:
 	vector<Particle> swarm;
 	float bestScore;
-	vector<float> bestPos;
 
 	default_random_engine generator;
 

@@ -7,27 +7,22 @@ float evaluate(vector<vector<unsigned short>>& routes, vector<float>& zk, Instan
 		// Score is 0 if a technician does not leave the origin
 		if(routes[i].size() < 3) {
 			w = 0.0; z = 0.0;
-			//cout << "0-0";
 			break;
 		}
 		// Sum priorities
 		for(size_t j=0;j<routes[i].size();j++) {
 			w += (float)instance.w[routes[i][j]];
-			//cout << routes[i][j] << "-";
 		}
-		//cout << " " << zk[i] << " | ";
 		// Sum free time
 		z += zk[i];
 	}
 	score = w/(float)instance.MW + z/(float)instance.MZ;
-	//cout << score << endl;
 	return score;
 }
 
 
 PSO::PSO(Instance& inst, PSOParams& params, Heuristic* h, int tn, Topology** t)
 : bestScore(0)
-, bestPos(3*inst.m, 0.0)
 , instance(inst)
 , parameters(params)
 , heuristic(h)
@@ -50,6 +45,8 @@ void PSO::solve() {
 
 	unsigned short nIter = 0;
 
+	float w = this->parameters.wMax;
+
 	uniform_real_distribution<float> dist(0.0,1.0);
 	function<float()> gen = bind(dist, ref(this->generator));
 
@@ -70,11 +67,12 @@ void PSO::solve() {
 			// Update PSO best scor
 			if(this->bestScore < score) {
 				this->bestScore = score;
-				//copy(this->swarm[i].position.begin(), this->swarm[i].position.end(), this->bestPos.begin());
 			}
 			// Update particle velocity and position
-			this->swarm[i].updateVelocity(this->topologies, this->tn, i, gen, this->parameters);
+			this->swarm[i].updateVelocity(this->topologies, this->tn, i, w, gen, this->parameters);
 			this->swarm[i].updatePosition(this->parameters);
+			// Update inertia
+			w = (w - this->parameters.wMin)*(this->parameters.maxIter - nIter)/(this->parameters.maxIter+this->parameters.wMin);
 		}
 
 		nIter++;

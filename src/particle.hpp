@@ -18,7 +18,7 @@ public:
 	vector<float> position;
 
 	void updateBest(float score);
-	void updateVelocity(Topology** t, int tn, int n, function<float()>& generator, PSOParams& params);
+	void updateVelocity(Topology** t, int tn, int n, float w, function<float()>& generator, PSOParams& params);
 	void updatePosition(PSOParams& params);
 private:
 	vector<float> velocity;

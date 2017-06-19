@@ -5,20 +5,6 @@ float norm1(float x1, float x2, float y1, float y2) {
 	return sqrt( pow(x1 - y1, 2) + pow(x2 - y2, 2));
 }
 
-void getCoverageMatrix(vector<float>& pos, Instance& instance, vector<vector<unsigned short>>& coverage) {
-	for(int i=0;i<instance.m;i++) {
-		for(int j=0;j<instance.n;j++) {
-			// Check if technician has the required skill
-			if(instance.s[j+1][i]) {
-				// Check if job is in technician range (euclidian distance)
-				if(norm1(pos[3*i], pos[3*i+1], instance.c[j+1][0], instance.c[j+1][1]) <= abs(pos[3*i+2])) {
-					coverage[i][j] = instance.w[j+1];
-				}
-			}
-		}
-	}
-}
-
 void getDistanceMatrix(Instance& instance, vector<vector<float>>& distances) {
 	for(int i=0;i<instance.N;i++) {
 		for (int j=0;j<instance.N;j++) {
@@ -28,6 +14,20 @@ void getDistanceMatrix(Instance& instance, vector<vector<float>>& distances) {
 				distances[i][j] = distances[j][i];
 			} else {
 				distances[i][j] = norm1(instance.c[i][0], instance.c[i][1], instance.c[j][0], instance.c[j][1]);
+			}
+		}
+	}
+}
+
+void getCoverageMatrix(vector<float>& pos, Instance& instance, vector<vector<unsigned short>>& coverage) {
+	for(int i=0;i<instance.m;i++) {
+		for(int j=0;j<instance.n;j++) {
+			// Check if technician has the required skill
+			if(instance.s[j+1][i]) {
+				// Check if job is in technician range (euclidian distance)
+				if(norm1(pos[3*i], pos[3*i+1], instance.c[j+1][0], instance.c[j+1][1]) <= abs(pos[3*i+2])) {
+					coverage[i][j] = instance.w[j+1];
+				}
 			}
 		}
 	}
