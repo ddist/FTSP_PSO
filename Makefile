@@ -5,7 +5,7 @@ ODIR = .
 SDIR = src
 INC = -Iinc
 
-_OBJS = main.o pso.o priority.o global.o instance.o particle.o
+_OBJS = main.o pso.o priority.o global.o ring.o instance.o particle.o
 OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
 
 

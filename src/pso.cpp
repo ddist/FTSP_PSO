@@ -25,7 +25,7 @@ float evaluate(vector<vector<unsigned short>>& routes, vector<float>& zk, Instan
 }
 
 
-PSO::PSO(Instance& inst, PSOParams& params, Heuristic* h, int tn, Topology* t)
+PSO::PSO(Instance& inst, PSOParams& params, Heuristic* h, int tn, Topology** t)
 : bestScore(0)
 , bestPos(3*inst.m, 0.0)
 , instance(inst)
@@ -38,7 +38,6 @@ PSO::PSO(Instance& inst, PSOParams& params, Heuristic* h, int tn, Topology* t)
 	for(int i=0;i < params.nParticles;i++) {
 		this->swarm.push_back(Particle(inst.m, ref(this->generator), params));
 	}
-	//this->swarm = vector<Particle>(params.nParticles);
 
 }
 
@@ -46,7 +45,7 @@ void PSO::solve() {
 
 	this->heuristic->initialize(this->instance);
 	for(int i=0;i<this->tn;i++) {
-		this->topologies[i].initialize(&(this->swarm));
+		this->topologies[i]->initialize(&(this->swarm));
 	}
 
 	unsigned short nIter = 0;
@@ -67,8 +66,8 @@ void PSO::solve() {
 			// Update particle's best score
 			this->swarm[i].updateBest(score);
 			//Update neighborhood best
-			for(int j=0;j<this->tn;j++) {this->topologies[j].update((unsigned short)i, score);};
-			// Update PSO best score
+			for(int j=0;j<this->tn;j++) {this->topologies[j]->update((unsigned short)i, score);};
+			// Update PSO best scor
 			if(this->bestScore < score) {
 				this->bestScore = score;
 				//copy(this->swarm[i].position.begin(), this->swarm[i].position.end(), this->bestPos.begin());

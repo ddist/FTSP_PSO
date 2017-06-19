@@ -11,6 +11,7 @@
 #include "instance.hpp"
 #include "pso_params.hpp"
 #include "global.hpp"
+#include "ring.hpp"
 #include "priority.hpp"
 #include "particle.hpp"
 
@@ -18,7 +19,7 @@ using namespace std;
 
 class PSO {
 public:
-	PSO(Instance& inst, PSOParams& params, Heuristic* h, int tn, Topology* t);
+	PSO(Instance& inst, PSOParams& params, Heuristic* h, int tn, Topology** t);
 	void solve();
 private:
 	vector<Particle> swarm;
@@ -33,7 +34,7 @@ private:
 	Heuristic *heuristic;
 
 	int tn;
-	Topology *topologies;
+	Topology **topologies;
 };
 
 #endif

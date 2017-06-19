@@ -12,9 +12,10 @@ public:
 	virtual void getBestPos(unsigned short n, vector<float>& pos) = 0;
 	virtual void update(unsigned short n, float score) = 0;
 protected:
-	Topology(float q) : q(q) {};
+	Topology(float q, int k=1) : q(q), k(k) {};
 public:
 	float q;
+	int k;
 };
 
 #endif

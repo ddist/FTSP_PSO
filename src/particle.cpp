@@ -1,9 +1,9 @@
 #include "particle.hpp"
 
 Particle::Particle(unsigned short m, default_random_engine& gen, PSOParams& params) 
-: position(3*m)
+: pBestScore(0)
+, position(3*m)
 , velocity(3*m)
-, pBestScore(0)
 , pBest(3*m)
 {
 	auto dist1 = uniform_real_distribution<float>(params.uMin, params.uMax);
@@ -26,19 +26,23 @@ void Particle::updateBest(float score) {
 	}
 }
 
-void Particle::updateVelocity(Topology *t, int tn, int n, function<float()>& generator, PSOParams& params) {
+void Particle::updateVelocity(Topology **t, int tn, int n, function<float()>& generator, PSOParams& params) {
 	vector<float> u = vector<float>(tn+1);
 	generate_n(u.begin(), tn+1, generator);
 
 	vector<vector<float>> tBest = vector<vector<float>>(tn, vector<float>(this->position.size()));
 
-	for(int i=0;i<tn;i++) {t[i].getBestPos(n, tBest[i]);};
+	for(int i=0;i<tn;i++) {t[i]->getBestPos(n, tBest[i]);};
 
 	for(size_t i=0; i<this->position.size(); i++) {
 		this->velocity[i] = params.vWeight*this->velocity[i] + params.q*u[0]*(this->pBest[i] - this->position[i]);
 		for(int j=0;j<tn;j++) {
-			this->velocity[i] += t[j].q*u[j+1]*(tBest[j][i] - this->position[i]);
+			//cout << t[j]->q << " " << u[j+1] << " | ";
+			this->velocity[i] += t[j]->q*u[j+1]*(tBest[j][i] - this->position[i]);
 		}
+		//cout << endl;
+		if(this->velocity[i] > params.vMax) {this->velocity[i] = params.vMax;};
+		if(this->velocity[i] < params.vMin) {this->velocity[i] = params.vMin;};
 	}
 }
 
