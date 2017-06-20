@@ -14,11 +14,11 @@ int main(int argc, char const *argv[]) {
 	params.wMax = 0.9;
 	params.wMin = 0.4;
 	params.q = 0.5;
-	params.nParticles = 20;
+	params.nParticles = 30;
 	params.maxIter = 1000;
 
 	Heuristic *h;
-	h = new Priority();
+	h = new Urgency();
 
 	Topology** t = new Topology*[3];
 	t[0] = new Global(0.5);

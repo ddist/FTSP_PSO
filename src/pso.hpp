@@ -14,6 +14,7 @@
 #include "ring.hpp"
 #include "fdr.hpp"
 #include "priority.hpp"
+#include "urgency.hpp"
 #include "particle.hpp"
 
 using namespace std;
