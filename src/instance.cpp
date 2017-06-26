@@ -1,6 +1,7 @@
 #include "instance.hpp"
 
 Instance* Instance::load(const char* fdir) {
+	cout << endl << "-> Reading instance file ...";
 	ifstream file (fdir);
 
 	if(!file.is_open()) {
@@ -62,5 +63,6 @@ Instance* Instance::load(const char* fdir) {
 	}
 
 	file.close();
+	cout << " done." << endl;
 	return this;
 }

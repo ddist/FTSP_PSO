@@ -22,7 +22,7 @@ using namespace std;
 class PSO {
 public:
 	PSO(Instance& inst, PSOParams& params, Heuristic* h, int tn, Topology** t);
-	void solve();
+	float solve();
 private:
 	vector<Particle> swarm;
 	float bestScore;

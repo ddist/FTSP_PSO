@@ -1,0 +1,12 @@
+algo = ruby pso_wrapper.rb
+execdir = .
+deterministic = 0
+run_obj = runlength
+overall_obj = mean
+cutoff_time = 30
+cutoff_length = max
+tunerTimeout = 100000000
+paramfile = pso.params
+outdir = tuner/
+instance_file = inst_scenario1.txt
+test_instance_file = inst_scenario1.txt

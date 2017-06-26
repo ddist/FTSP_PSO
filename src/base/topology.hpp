@@ -13,8 +13,9 @@ public:
 	virtual void update(unsigned short n, float score) = 0;
 	float q;
 	int k;
+	const char* name;
 protected:
-	Topology(float q, int k=1) : q(q), k(k) {};
+	Topology(float q, int k, const char* name) : q(q), k(k), name(name) {};
 };
 
 #endif

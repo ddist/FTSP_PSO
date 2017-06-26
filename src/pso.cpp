@@ -36,7 +36,7 @@ PSO::PSO(Instance& inst, PSOParams& params, Heuristic* h, int tn, Topology** t)
 
 }
 
-void PSO::solve() {
+float PSO::solve() {
 
 	this->heuristic->initialize(this->instance);
 	for(int i=0;i<this->tn;i++) {
@@ -49,7 +49,7 @@ void PSO::solve() {
 
 	uniform_real_distribution<float> dist(0.0,1.0);
 	function<float()> gen = bind(dist, ref(this->generator));
-
+	cout << endl;
 	do 
 	{
 		for(int i=0; i < this->parameters.nParticles; i++) {
@@ -74,10 +74,9 @@ void PSO::solve() {
 			// Update inertia
 			w = (w - this->parameters.wMin)*(this->parameters.maxIter - nIter)/(this->parameters.maxIter+this->parameters.wMin);
 		}
-
+		//cout << "\t-> Iteration " << nIter << " - Best Score: " << this->bestScore << endl;
 		nIter++;
 
 	} while (nIter < this->parameters.maxIter);
-
-	cout << "Best score: " << this->bestScore << endl;
+	return this->bestScore;
 }

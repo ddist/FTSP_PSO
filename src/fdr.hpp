@@ -11,10 +11,11 @@ using namespace std;
 class FDR : public Topology
 {
 public:
-	FDR(float q) : Topology(q) {};
+	FDR(float q=1.5) : Topology(q, 1, "FDR") {};
 	void initialize(vector<Particle>* swarm);
 	void getBestPos(unsigned short n, vector<float>& pos);
 	void update(unsigned short n, float score);
+	static const char* name;
 private:
 	vector<Particle>* swarm;
 };

@@ -9,7 +9,7 @@ using namespace std;
 class Ring : public Topology
 {
 public:
-	Ring(float q, int k=1) : Topology(q, k) {};
+	Ring(float q=1.5, int k=1) : Topology(q, k, "Ring") {};
 	void initialize(vector<Particle>* swarm);
 	void getBestPos(unsigned short n, vector<float>& pos);
 	void update(unsigned short n, float score);
