@@ -33,6 +33,4 @@
 
 # Binaries
 
-tuner/*
-pso_output*
 pso
