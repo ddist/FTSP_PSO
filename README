@@ -2,12 +2,24 @@ REQUIREMENTS
 
 - GCC 4.8.X
 - C++11 support
+- Ruby 2.2.0+
 
 INSTRUCTIONS
 
 1) Navigate to the project folder
-2) Run $ make in the shell
-3) Execute as ./pso <Instance Dir>, e.g ./pso data/FSTP_R_1_1.txt
+2) Run make in the shell
+3) Execute as ./pso <params> 
+
+Example 
+
+>  ./pso -seed 1 -inst data/FTSP_C_1_1.txt -type C -heuristic 2 -maxIter 1000 -topologies 123 -uMin 0.0 -uMax 80.0 -vMin -30.0 -vMax 30.0 -wMin 0.4 -wMax 0.9 
+>  -nParticles 40 -cp 0.5 -cg 0.5 -cl 1.5 -cn 2.0 -uq 3.0
+
+4) For parameter tuning with ParamILS, execute as ./paramils <params>
+
+Example
+
+>  ./paramils -numRun 0 -userunlog 1 -maxEvals 500 -pruning 0 -validN 0 -scenariofile scenario_pso_ftsp.txt > tuner/ParamILS_0.out
 
 
 INSTANCES
