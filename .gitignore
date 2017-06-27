@@ -33,4 +33,5 @@
 
 # Binaries
 
+tuner/*
 pso

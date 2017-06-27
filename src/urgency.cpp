@@ -48,7 +48,7 @@ void Urgency::decode(Particle& particle, vector<vector<unsigned short>>& routes,
 				}
 				float U = min((float)this->instance.l[j+1], (float)this->instance.b[i] - cij[j+1][0]) - (float)this->instance.p[j+1] - cij[prevJob][j+1] - tk[i];
 				U = U/(float)this->instance.p[j+1];
-				if(2.0*U < bestU || (this->instance.e[j+1] < bestL) ) {
+				if(this->q*U < bestU || (this->instance.e[j+1] < bestL) ) {
 					bestU = U;
 					bestL = this->instance.e[j+1];
 					bestIndex = (unsigned short)j;

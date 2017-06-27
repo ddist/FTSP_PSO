@@ -15,6 +15,7 @@ int main(int argc, char const *argv[]) {
 	int n = 0;
 	int inst_type = 0;
 	float cg, cn, cl;
+	float uq = 0.0;
 
 	for(int i=1; i < argc;i++) {
 		if(strcmp(argv[i], "-seed") == 0) {params.seed = (unsigned int)atoi(argv[i+1]); i++; continue;};
@@ -40,6 +41,7 @@ int main(int argc, char const *argv[]) {
 		if(strcmp(argv[i], "-cg") == 0) {cg = strtof(argv[i+1], NULL); i++; continue;};
 		if(strcmp(argv[i], "-cn") == 0) {cn = strtof(argv[i+1], NULL); i++; continue;};
 		if(strcmp(argv[i], "-cl") == 0) {cl = strtof(argv[i+1], NULL); i++; continue;};
+		if(strcmp(argv[i], "-uq") == 0) {uq = strtof(argv[i+1], NULL); i++; continue;};
 		if(strcmp(argv[i], "-nParticles") == 0) {params.nParticles = (unsigned short)atoi(argv[i+1]); i++; continue;};
 		if(strcmp(argv[i], "-maxIter") == 0) {params.maxIter = (unsigned short)atoi(argv[i+1]); i++; continue;};
 		if(strcmp(argv[i], "-heuristic") == 0) {
@@ -74,6 +76,8 @@ int main(int argc, char const *argv[]) {
 	}
 
 	if(inst_type == 1) {params.uMin = -params.uMax;};
+
+	if(uq != 0.0) {((Urgency*)h)->q = uq;};
 
 	for(int j=0; j < n;j++) {
 		if(strcmp(t[j]->name, "Global") == 0) {t[j]->q = cg; continue;};

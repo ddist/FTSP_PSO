@@ -12,6 +12,7 @@ class Urgency : public Heuristic
 public:
 	void initialize(Instance& instance);
 	void decode(Particle& particle, vector<vector<unsigned short>>& routes, vector<float>& zk);
+	float q;
 private:
 	Instance instance;
 	vector<vector<float>> cij;
