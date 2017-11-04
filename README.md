@@ -13,7 +13,7 @@ Implements a flexible PSO solver for the FTSP. Includes the necesary config file
 
 [Paper](https://drive.google.com/open?id=0B8z7-_lhSCqvdmxFcU82cmpZTE0)
 
-###REQUIREMENTS
+### REQUIREMENTS
 
 - GCC 4.8.X
 - C++11 support
@@ -45,25 +45,25 @@ For example, the instance FTSP_RC_12_19.txt refers to the RC geographical distri
 
 2) Using the paperÕs nomenclature, the instances are arranged as presented below:
 
-Number of tasks (n)
-Number of technicians (m)
-
-Priority of tasks (w_i)
-
-Skill of technicians to perform each task (s_ik)
-
-Processing time of each task (p_i)
-Beginning of time windows of tasks (e_i)
-End of time windows of tasks (l_i)
-
-Beginning of time windows of technicians (a_k)
-End of time windows of technicians (b_k)
-
-Parameter M
-Parameter MW
-Parameter MZ
-
-Geographic coordinates of locations of the base and jobs
+>Number of tasks (n)
+>Number of technicians (m)
+>
+>Priority of tasks (w_i)
+>
+>Skill of technicians to perform each task (s_ik)
+>
+>Processing time of each task (p_i)
+>Beginning of time windows of tasks (e_i)
+>End of time windows of tasks (l_i)
+>
+>Beginning of time windows of technicians (a_k)
+>End of time windows of technicians (b_k)
+>
+>Parameter M
+>Parameter MW
+>Parameter MZ
+>
+>Geographic coordinates of locations of the base and jobs
 
 3) Travel times are equal to Euclidean distances (we use full precision in our experiments).
 
