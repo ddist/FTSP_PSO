@@ -1,5 +1,7 @@
 # Particle Swarm Optimization (PSO) for the Field Technician Scheduling Problem (FTSP)
-Implements a flexible PSO solver for the FTSP. Includes the necesary config files to use ParamILS for parameter tuning.
+Implements a flexible PSO solver for the FTSP. Includes the necesary config files to use ParamILS for parameter tuning. 
+
+The implementation follows [this](https://drive.google.com/open?id=0B8z7-_lhSCqvdmxFcU82cmpZTE0) paper, and together make up for the final evaluation of the Advance AI Course.
 
 #### Topologies
 - Global
@@ -10,8 +12,7 @@ Implements a flexible PSO solver for the FTSP. Includes the necesary config file
 #### Heuristics
 - Priority first
 - Most urgent first
-
-[Paper](https://drive.google.com/open?id=0B8z7-_lhSCqvdmxFcU82cmpZTE0)
+(see paper)
 
 ### REQUIREMENTS
 
