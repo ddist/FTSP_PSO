@@ -44,27 +44,21 @@ For example, the instance FTSP_RC_12_19.txt refers to the RC geographical distri
 
 
 2) Using the paperÕs nomenclature, the instances are arranged as presented below:
-
->Number of tasks (n)
->Number of technicians (m)
->
->Priority of tasks (w_i)
->
->Skill of technicians to perform each task (s_ik)
->
->Processing time of each task (p_i)
->Beginning of time windows of tasks (e_i)
->End of time windows of tasks (l_i)
->
->Beginning of time windows of technicians (a_k)
->End of time windows of technicians (b_k)
->
->Parameter M
->Parameter MW
->Parameter MZ
->
->Geographic coordinates of locations of the base and jobs
-
+<blockquote><br>
+Number of tasks (n)<br>
+Number of technicians (m)<br><br>
+Priority of tasks (w_i)<br><br>
+Skill of technicians to perform each task (s_ik)<br><br>
+Processing time of each task (p_i)<br>
+Beginning of time windows of tasks (e_i)<br>
+End of time windows of tasks (l_i)<br><br>
+Beginning of time windows of technicians (a_k)<br>
+End of time windows of technicians (b_k)<br><br>
+Parameter M<br>
+Parameter MW<br>
+Parameter MZ<br><br>
+Geographic coordinates of locations of the base and jobs<br>
+</blockquote>
 3) Travel times are equal to Euclidean distances (we use full precision in our experiments).
 
 4) For example, in FTSP_R_1_1.txt, we have:
