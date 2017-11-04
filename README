@@ -1,10 +1,25 @@
-REQUIREMENTS
+# Particle Swarm Optimization (PSO) for the Field Technician Scheduling Problem (FTSP)
+Implements a flexible PSO solver for the FTSP. Includes the necesary config files to use ParamILS for parameter tuning.
+
+#### Topologies
+- Global
+- Ring
+- FDR
+- Any combination of the above
+
+#### Heuristics
+- Priority first
+- Most urgent first
+
+[Paper](https://drive.google.com/open?id=0B8z7-_lhSCqvdmxFcU82cmpZTE0)
+
+###REQUIREMENTS
 
 - GCC 4.8.X
 - C++11 support
 - Ruby 2.2.0+
 
-INSTRUCTIONS
+### INSTRUCTIONS
 
 1) Navigate to the project folder
 2) Run make in the shell
@@ -22,7 +37,7 @@ Example
 >  ./paramils -numRun 0 -userunlog 1 -maxEvals 500 -pruning 0 -validN 0 -scenariofile scenario_pso_ftsp.txt > tuner/ParamILS_0.out
 
 
-INSTANCES
+### INSTANCES
 
 1) The name of each instance consists of the problem's name (FTSP), the geographic distribution (R, C, RC, and RAD), the number to the case or dimension of the instances generated (from 1 to 13), and the number of the instance (from 1 to 20). 
 For example, the instance FTSP_RC_12_19.txt refers to the RC geographical distributions of tasks, case 12 (ie, 500 tasks and 83 technicians - see Table 3 of the paper), and instance 19 of the case 12. 
